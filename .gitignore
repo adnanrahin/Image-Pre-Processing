@@ -10,6 +10,4 @@ bin/
 obj/
 *.html
 *.log
-*.PNG
-*.png
 *.log.*
