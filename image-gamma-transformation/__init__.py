@@ -1,2 +1,3 @@
-import cv2
-print(cv2.getVersionMajor())
+import cv2 as cv
+import numpy as np
+
