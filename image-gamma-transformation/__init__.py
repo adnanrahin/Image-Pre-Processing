@@ -15,12 +15,14 @@ def gamma_transformation(path, gamma):
     gamma_transposed_img = np.array(255 * (gray / 255) ** gamma, dtype='uint8')
     img = PIL.Image.fromarray(gamma_transposed_img)
     fileName = path[13: len(path)]
-    img.save('gamma_transposed' + fileName)
+    img.save('gamma_transposed_' + fileName)
 
 
-overexposed = '../ImageData/overexpose.jpg'
-gamma_transformation(overexposed, 5)
-overexposed_img = cv.imread('gamma_transposedoverexpose.jpg')
-overexposed_histogram = cv.equalizeHist(overexposed_img)
-plt.plot(overexposed_histogram)
-plt.show()
+def transpose():
+    overexposed = '../ImageData/overexpose.jpg'
+    gamma_transformation(overexposed, 5.5)
+    underexposed = '../ImageData/underexpose.jpg'
+    gamma_transformation(underexposed, 0.369)
+
+
+transpose()

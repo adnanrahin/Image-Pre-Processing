@@ -11,7 +11,5 @@ obj/
 *.html
 *.log
 *.PNG
-*.JPG
-*.jpg
 *.png
 *.log.*
