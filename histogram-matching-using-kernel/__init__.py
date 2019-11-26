@@ -1,37 +1,56 @@
-import cv2
 import numpy as np
+import matplotlib.pyplot as plt
+import cv2
+import math
 
-inputImage = cv2.imread('../ImageData/overexpose.jpg')
-inputImageGrayLevel = cv2.cvtColor(inputImage, cv2.COLOR_BGR2GRAY)
-resizeImage = cv2.resize(inputImageGrayLevel, (1080, 1080))
+img = cv2.imread('../ImageData/overexpose.jpg')
+img2 = cv2.imread('../ImageData/underexpose.jpg')
+img2 = cv2.cvtColor(img2, cv2.COLOR_RGB2GRAY)
 
-w1 = np.array([1])
-w2 = np.array([[0, 1 / 5, 0], [1 / 5, 1 / 5, 1 / 5], [0, 1 / 5, 0]])
-w3 = np.array([[1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9]])
+rows, columns, channels = img.shape
+rows1, columns1 = img2.shape
 
-convolution1 = cv2.filter2D(inputImageGrayLevel, -1, w1)
-convolution2 = cv2.filter2D(inputImageGrayLevel, -1, w2)
-convolution3 = cv2.filter2D(inputImageGrayLevel, -1, w3)
+array1 = np.zeros(256)
+array2 = np.zeros(256)
 
-width, height = inputImageGrayLevel.shape
-vectorList = []
-vectorPosition = []
+hist, bins = np.histogram(img2.flatten(), 256, [0, 256])
+cdf = hist.cumsum()
 
-for i in range(len(convolution1)):
-    for j in range(len(convolution1)):
-        vectorList.append([convolution1[i, j], convolution2[i, j], convolution3[i, j]])
-        vectorPosition.append([i, j])
-outputImage = np.zeros((width, width))
+cdf_m = np.ma.masked_equal(cdf, 0)
+cdf_m = (cdf_m - cdf_m.min()) * 255 / (cdf_m.max() - cdf_m.min())
+cdf = np.ma.filled(cdf_m, 0).astype('uint8')
+img3 = cdf[img2]
 
-unsortedArray = np.array(vectorList)
-vectorList.sort()
-sortedArray = np.array(vectorList)
+for e in range(rows1):
+    for f in range(columns1):
+        pixel_gray1 = img2[e, f]
+        array2[pixel_gray1] += 1
 
+for a in range(rows):
+    for b in range(columns):
+        pixel_gray = img[a, b]
+        array1[pixel_gray] += 1
 
-def getElementIndex(list1, element):
-    return list1.index(element)
+array3 = np.zeros((256))
 
+for index in range(1, len(array2)):
+    array2[index] = array2[index - 1] + array2[index]
 
-cv2.imshow("image.jpg", unsortedArray)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+for c in range(rows1):
+    for d in range(columns1):
+        pixel_location = img2[c, d]
+        img2[c, d] = math.floor((array2[pixel_location] / (rows1 * columns1)) * (len(array2) - 1))
+
+plt.figure(1)
+plt.subplot(221)
+plt.imshow(img)
+plt.subplot(222)
+plt.plot(array1)
+
+plt.subplot(223)
+plt.imshow(img2, 'gray')
+plt.subplot(224)
+
+plt.hist(img3.flatten(), 256, [0, 256], color='blue')
+plt.xlim([0, 256])
+plt.show()
