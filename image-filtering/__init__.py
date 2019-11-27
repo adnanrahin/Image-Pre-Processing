@@ -23,6 +23,6 @@ def box_filter(path):
     img.save('box_filter.jpg')
 
 
-file_path = '../ImageData/overexpose.jpg'
+file_path = '../image-gamma-transformation/gamma_transposed_overexpose.jpg'
 gaussian_filter(file_path)
 box_filter(file_path)
