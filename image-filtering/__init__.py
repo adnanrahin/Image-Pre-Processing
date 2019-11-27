@@ -29,8 +29,15 @@ def first_order_derivative(path):
 
 def second_order_derivative(path):
     img = cv2.imread(path)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img = cv2.GaussianBlur(img, (5, 5), 0)
+    laplacian_filter_img = cv2.Laplacian(img, cv2.CV_64F)
+    img = np.array(laplacian_filter_img, dtype=np.uint8)
+    img = PIL.Image.fromarray(img)
+    img.save('laplacian_filter.jpg')
 
 
 file_path = '../image-gamma-transformation/gamma_transposed_overexpose.jpg'
 gaussian_filter(file_path)
 box_filter(file_path)
+second_order_derivative(file_path)
