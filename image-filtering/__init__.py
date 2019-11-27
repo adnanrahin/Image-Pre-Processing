@@ -11,16 +11,24 @@ import matplotlib as mpl
 
 def gaussian_filter(path):
     img = cv2.imread(path)
-    gaussian_filter_img = cv2.GaussianBlur(img, (5, 5), 0)
+    gaussian_filter_img = cv2.GaussianBlur(img, (3, 3), 0)
     img = PIL.Image.fromarray(gaussian_filter_img)
     img.save('gaussian_filter.jpg')
 
 
 def box_filter(path):
     img = cv2.imread(path)
-    box_filter_img = cv2.boxFilter(img, -1, (1, 1))
+    box_filter_img = cv2.boxFilter(img, -1, (10, 10))
     img = PIL.Image.fromarray(box_filter_img)
     img.save('box_filter.jpg')
+
+
+def first_order_derivative(path):
+    img = cv2.imread(path)
+
+
+def second_order_derivative(path):
+    img = cv2.imread(path)
 
 
 file_path = '../image-gamma-transformation/gamma_transposed_overexpose.jpg'
