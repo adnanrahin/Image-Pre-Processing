@@ -25,6 +25,17 @@ def box_filter(path):
 
 def first_order_derivative(path):
     img = cv2.imread(path)
+    grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    sobel_X = cv2.Sobel(grayImage, cv2.CV_64F, 1, 0, ksize=5)
+    sobel_Y = cv2.Sobel(grayImage, cv2.CV_64F, 0, 1, ksize=5)
+    fig = plt.figure(frameon=False, facecolor='white')
+    ax = plt.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+    ax.imshow(sobel_X, cmap='gray')
+    plt.savefig('sobel_x.png')
+    ax.imshow(sobel_Y, cmap='gray')
+    plt.savefig('sobel_y.png')
 
 
 def second_order_derivative(path):
@@ -41,3 +52,4 @@ file_path = '../image-gamma-transformation/gamma_transposed_overexpose.jpg'
 gaussian_filter(file_path)
 box_filter(file_path)
 second_order_derivative(file_path)
+first_order_derivative(file_path)
