@@ -7,6 +7,7 @@ from spectral import *
 import math
 from laspy.file import File
 import matplotlib as mpl
+from skimage.filters import roberts, sobel
 
 
 def gaussian_filter(path):
@@ -26,20 +27,30 @@ def box_filter(path):
 def sobel_kernel(path):
     img = cv2.imread(path)
     grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    sobel_X = cv2.Sobel(grayImage, cv2.CV_64F, 1, 0, ksize=5)
-    sobel_Y = cv2.Sobel(grayImage, cv2.CV_64F, 0, 1, ksize=5)
+    sobel_edge = sobel(grayImage)
     fig = plt.figure(frameon=True, facecolor='gray')
     ax = plt.Axes(fig, [0., 0., 1., 1.])
     ax.set_axis_off()
     fig.add_axes(ax)
-    ax.imshow(sobel_X, cmap='gray')
-    plt.savefig('sobel_x.png')
-    ax.imshow(sobel_Y, cmap='gray')
-    plt.savefig('sobel_y.png')
+    ax.imshow(sobel_edge, cmap='gray')
+    plt.savefig('sobel_edge.png')
+
+
+def robert_kernel(path):
+    img = cv2.imread(path)
+    grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    robert_edge = roberts(grayImage)
+    fig = plt.figure(frameon=True, facecolor='gray')
+    ax = plt.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+    ax.imshow(robert_edge, cmap='gray')
+    plt.savefig('robert_edge.png')
 
 
 def first_order_derivative(path):
     sobel_kernel(path)
+    robert_kernel(path)
 
 
 def second_order_derivative(path):
