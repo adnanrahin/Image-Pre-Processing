@@ -23,12 +23,12 @@ def box_filter(path):
     img.save('box_filter.jpg')
 
 
-def first_order_derivative(path):
+def sobel_kernel(path):
     img = cv2.imread(path)
     grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     sobel_X = cv2.Sobel(grayImage, cv2.CV_64F, 1, 0, ksize=5)
     sobel_Y = cv2.Sobel(grayImage, cv2.CV_64F, 0, 1, ksize=5)
-    fig = plt.figure(frameon=False, facecolor='white')
+    fig = plt.figure(frameon=True, facecolor='gray')
     ax = plt.Axes(fig, [0., 0., 1., 1.])
     ax.set_axis_off()
     fig.add_axes(ax)
@@ -36,6 +36,10 @@ def first_order_derivative(path):
     plt.savefig('sobel_x.png')
     ax.imshow(sobel_Y, cmap='gray')
     plt.savefig('sobel_y.png')
+
+
+def first_order_derivative(path):
+    sobel_kernel(path)
 
 
 def second_order_derivative(path):
@@ -48,8 +52,23 @@ def second_order_derivative(path):
     img.save('laplacian_filter.jpg')
 
 
+def un_sharp(path):
+    img = cv2.imread(path)
+    gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray_image_mf = median_filter(gray_image, 1)
+    lap = cv2.Laplacian(gray_image_mf, cv2.CV_64F)
+    sharpedImage = gray_image - 0.7 * lap
+    fig = plt.figure(frameon=True, facecolor='gray')
+    ax = plt.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+    ax.imshow(sharpedImage, cmap='gray')
+    plt.savefig('un_sharped.png')
+
+
 file_path = '../image-gamma-transformation/gamma_transposed_overexpose.jpg'
 gaussian_filter(file_path)
 box_filter(file_path)
 second_order_derivative(file_path)
 first_order_derivative(file_path)
+un_sharp(file_path)
