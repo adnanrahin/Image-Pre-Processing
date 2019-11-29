@@ -65,10 +65,10 @@ def histogram_matching(path):
 
 
 def histogram_():
-    overexposed = histogram_matching('../ImageData/overexpose.jpg')
+    overexposed = histogram_matching('../ImageData/kernel_overexpose.jpg')
     img = PIL.Image.fromarray(overexposed)
     img.save('over_histogram_matching_image.png')
-    underexposed = histogram_matching('../ImageData/underexpose.jpg')
+    underexposed = histogram_matching('../ImageData/kernel_underexpose.jpg')
     img = PIL.Image.fromarray(underexposed)
     img.save('under_histogram_matching_image.png')
     histogram()
