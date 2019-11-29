@@ -42,8 +42,9 @@ def histogram():
 
 
 def histogram_matching(original_img_path, ref_img_path):
-    src = cv2.imread(original_img_path)
-    gray_image = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
+    org_src = cv2.imread(original_img_path)
+    ref_src = cv2.imread(ref_img_path)
+    gray_image = cv2.cvtColor(org_src, cv2.COLOR_BGR2GRAY)
 
     w1 = np.array([1])
     w2 = np.array([[0, 1 / 5, 0], [1 / 5, 1 / 5, 1 / 5], [0, 1 / 5, 0]])
@@ -68,7 +69,6 @@ def histogram_():
     overexposed = histogram_matching('../ImageData/kernel_overexpose.jpg', '../ImageData/kernel_underexpose.jpg')
     img = PIL.Image.fromarray(overexposed)
     img.save('histogram_matching_image.jpg')
-    histogram()
 
 
 histogram_()
