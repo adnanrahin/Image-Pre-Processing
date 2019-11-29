@@ -41,8 +41,8 @@ def histogram():
     plot_histogram(over_exposed, "overexposed_plot")
 
 
-def histogram_matching(path):
-    src = cv2.imread(path)
+def histogram_matching(original_img_path, ref_img_path):
+    src = cv2.imread(original_img_path)
     gray_image = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 
     w1 = np.array([1])
@@ -65,12 +65,9 @@ def histogram_matching(path):
 
 
 def histogram_():
-    overexposed = histogram_matching('../ImageData/kernel_overexpose.jpg')
+    overexposed = histogram_matching('../ImageData/kernel_overexpose.jpg', '../ImageData/kernel_underexpose.jpg')
     img = PIL.Image.fromarray(overexposed)
-    img.save('over_histogram_matching_image.png')
-    underexposed = histogram_matching('../ImageData/kernel_underexpose.jpg')
-    img = PIL.Image.fromarray(underexposed)
-    img.save('under_histogram_matching_image.png')
+    img.save('histogram_matching_image.jpg')
     histogram()
 
 
