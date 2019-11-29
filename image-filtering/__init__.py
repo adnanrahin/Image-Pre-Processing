@@ -69,7 +69,7 @@ def un_sharp(path):
     gray_image_mf = median_filter(gray_image, 1)
     lap = cv2.Laplacian(gray_image_mf, cv2.CV_64F)
     sharpedImage = gray_image - 0.7 * lap
-    fig = plt.figure(frameon=True, facecolor='gray')
+    fig = plt.figure(facecolor='gray')
     ax = plt.Axes(fig, [0., 0., 1., 1.])
     ax.set_axis_off()
     fig.add_axes(ax)
