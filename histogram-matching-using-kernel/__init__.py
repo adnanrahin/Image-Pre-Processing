@@ -32,8 +32,6 @@ def plot_histogram(img_matrix, plot_title):
     plt.title(plot_title)
     plt.savefig(plot_title + ".png")
     plt.close()
-    img = PIL.Image.open(plot_title + '.png')
-    img.show()
 
 
 def histogram():
