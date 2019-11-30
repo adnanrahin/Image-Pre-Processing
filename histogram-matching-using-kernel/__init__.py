@@ -41,20 +41,37 @@ def histogram():
     plot_histogram(over_exposed, "overexposed_plot")
 
 
+def image_pixel_intensity(img):
+    intensity_array = np.zeros(256)
+    height, width = img.shape[0:2]
+
+    for i in range(height):
+        for j in range(width):
+            intensity_array[img[i, j]] += 1
+
+    return intensity_array
+
+
 def histogram_matching(original_img_path, ref_img_path):
     org_src = cv2.imread(original_img_path)
     ref_src = cv2.imread(ref_img_path)
-    gray_image = cv2.cvtColor(org_src, cv2.COLOR_BGR2GRAY)
+    org_gray_image = cv2.cvtColor(org_src, cv2.COLOR_BGR2GRAY)
+    ref_gray_image = cv2.cvtColor(ref_src, cv2.COLOR_BGR2GRAY)
+
+    org_img_intensity = image_pixel_intensity(org_gray_image)
+    ref_img_intensity = image_pixel_intensity(ref_gray_image)
+    print(org_img_intensity)
+    print(ref_img_intensity)
 
     w1 = np.array([1])
     w2 = np.array([[0, 1 / 5, 0], [1 / 5, 1 / 5, 1 / 5], [0, 1 / 5, 0]])
     w3 = np.array([[1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9]])
 
-    convolution1 = cv2.filter2D(gray_image, -1, w1)
-    convolution2 = cv2.filter2D(gray_image, -1, w2)
-    convolution3 = cv2.filter2D(gray_image, -1, w3)
+    convolution1 = cv2.filter2D(org_gray_image, -1, w1)
+    convolution2 = cv2.filter2D(org_gray_image, -1, w2)
+    convolution3 = cv2.filter2D(org_gray_image, -1, w3)
 
-    width, height = gray_image.shape
+    width, height = org_gray_image.shape
 
     matrix = np.zeros((width, height, 3))
 
