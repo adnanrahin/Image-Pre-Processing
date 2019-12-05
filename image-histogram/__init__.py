@@ -49,9 +49,9 @@ def histogram():
     plot_histogram(ref_img, 'ref_img_histogram_matching')
     hist_match_img = cv2.imread('../histogram-matching-using-kernel/histogram_matching_image.jpg')
     plot_histogram(hist_match_img, 'hist_match_img')
-    over_Expose_image = cv2.imread('../ImageData/overexpose')
+    over_Expose_image = cv2.imread('../ImageData/overexpose.jpg')
     plot_histogram(over_Expose_image, 'overexpose_source_img')
-    under_expose_image = cv2.imread('../ImageData/underexpose')
+    under_expose_image = cv2.imread('../ImageData/underexpose.jpg')
     plot_histogram(under_expose_image, 'underexpose_source')
 
 
