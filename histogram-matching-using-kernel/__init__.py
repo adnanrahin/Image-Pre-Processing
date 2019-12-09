@@ -79,7 +79,9 @@ def histogram_matching(original_img_path, ref_img_path):
 
     for i in range(height):
         for j in range(width):
-            matrix[i, j] = ([convolution1[i, j], convolution2[i, j], convolution3[i, j]])
+            vector = ([convolution1[i, j], convolution2[i, j], convolution3[i, j]])
+            vector.sort()
+            matrix[i, j] = vector
 
     return np.array(matrix, dtype=np.uint8)
 
