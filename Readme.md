@@ -17,5 +17,9 @@
         <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/image-gamma-transformation/gamma_transposed_overexpose.jpg"
         alt="Over Exposed Plot"
         style="float: left; margin-right: 10px;" />
+        <h4>Under Exposed Result: </h4>
+        <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/image-gamma-transformation/gamma_transposed_underexpose.jpg"
+        alt="Over Exposed Plot"
+        style="float: left; margin-right: 10px;" />
     
 </ul>
