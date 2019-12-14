@@ -21,4 +21,16 @@
         alt="Over Exposed Plot"
         style="float: left; margin-right: 10px;" />    
     </li>
+    <li>
+    Apply Histogram equalization to the Over exposed and under exposed image.
+    <h5>Result: </h5>
+        <h6>Over Exposed Result: </h6>
+        <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/histogram-equalization/overexposed_img_hist_eql.jpg"
+        alt="Over Exposed Plot"
+        style="float: left; margin-right: 10px;" />
+        <h6>Under Exposed Result: </h6>
+        <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/histogram-equalization/underexposed_img_hist_eql.jpg"
+        alt="Over Exposed Plot"
+        style="float: left; margin-right: 10px;" />    
+    </li>
 </ul>
