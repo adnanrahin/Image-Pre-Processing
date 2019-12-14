@@ -10,16 +10,15 @@
         <li>Test several parameters of gamma until obtaining the best results and plot the
             histograms of both original and corrected images.
         </li>
-    </ul>    
-    </li>
-        <h3>Result: </h3>
-        <h4>Over Exposed Result: </h4>
+    </ul>
+    <h5>Result: </h5>
+        <h6>Over Exposed Result: </h6>
         <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/image-gamma-transformation/gamma_transposed_overexpose.jpg"
         alt="Over Exposed Plot"
         style="float: left; margin-right: 10px;" />
-        <h4>Under Exposed Result: </h4>
+        <h6>Under Exposed Result: </h6>
         <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/image-gamma-transformation/gamma_transposed_underexpose.jpg"
         alt="Over Exposed Plot"
-        style="float: left; margin-right: 10px;" />
-    
+        style="float: left; margin-right: 10px;" />    
+    </li>
 </ul>
