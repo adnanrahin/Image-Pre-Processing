@@ -33,4 +33,24 @@
         alt="Over Exposed Plot"
         style="float: left; margin-right: 10px;" />    
     </li>
+    <li>
+     Improve Image contrast using Exact Histogram Matching.
+     <h5>Result</h5>
+        <h6>Source Image: </h6>
+        <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/ImageData/kernel_overexpose.jpg"
+        alt="Source Image"
+        style="float: left; margin-right: 10px;" />
+        <h6>Reference Image: </h6>
+        <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/ImageData/kernel_underexpose.jpg"
+        alt="Reference Image"
+        style="float: left; margin-right: 10px;" /> 
+        <h6>Grayscale Image: </h6>
+        <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/histogram-matching-using-kernel/image.jpg"
+        alt="Grayscale Image To apply the kernel"
+        style="float: left; margin-right: 10px;" />
+        <h6>Exact Histogram Match Image: </h6>
+        <img src="https://github.com/Arx1971/Image-Pre-Processing/blob/master/histogram-matching-using-kernel/histogram_matching_image.jpg"
+        alt="Output Image"
+        style="float: left; margin-right: 10px;" />
+    </li>
 </ul>
